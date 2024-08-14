@@ -12,13 +12,15 @@ struct ContentView: View {
     @ObservedObject var viewModel = ViewModel()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(viewModel.recommendations) { recommendation in
+                    RecommendationsListItem(recommendation: recommendation)
+                }
+            }
+            .listStyle(.plain)
+            .navigationTitle("Recommendations")
         }
-        .padding()
     }
 }
 

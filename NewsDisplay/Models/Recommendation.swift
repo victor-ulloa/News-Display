@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Recommendation: Codable {
+struct Recommendation: Codable, Identifiable {
     
+    let id = UUID()
     let title: String?
     let byline: [String]?
     let images: Images?

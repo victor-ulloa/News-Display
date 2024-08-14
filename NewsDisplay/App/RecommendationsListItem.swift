@@ -14,19 +14,21 @@ struct RecommendationsListItem: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(alignment: .top, spacing: 40) {
+            HStack(alignment: .top, spacing: 20) {
                 if let protectionProduct = recommendation.protectionProduct, !protectionProduct.isEmpty  {
                     Text(recommendation.title ?? "")
-                        .font(.custom("Times New Roman", size: 28))
+                        .font(.custom("Times New Roman", size: 24))
                         .fontWeight(.bold)
                     + Text(" ")
                     + Text(Image(systemName: "x.circle"))
                         .foregroundColor(.red)
                 } else {
                     Text(recommendation.title ?? "")
-                        .font(.custom("Times New Roman", size: 28))
+                        .font(.custom("Times New Roman", size: 24))
                         .fontWeight(.bold)
                 }
+                
+                Spacer()
                 
                 if let imageURL = URL(string: recommendation.images?.urls?.width220 ?? "") {
                     AsyncImage(url: imageURL) { phase in
