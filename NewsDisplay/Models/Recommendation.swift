@@ -7,16 +7,17 @@
 
 import Foundation
 
-struct Recommendation: Codable, Identifiable {
-    let id: String
-    let title: String
-    let description: String
-    let imageURL: URL
+struct Recommendation: Codable {
+    
+    let title: String?
+    let byline: [String]?
+    let images: Images?
+    let protectionProduct: String?
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case title = "title"
-        case description = "description"
-        case imageURL = "image_url"
+        case title
+        case byline
+        case images = "promo_image"
+        case protectionProduct = "protection_product"
     }
 }

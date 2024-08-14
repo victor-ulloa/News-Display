@@ -7,8 +7,8 @@
 
 import Foundation
 
-class RecommendationService {
-    static let shared = RecommendationService()
+class NetworkManager {
+    static let shared = NetworkManager()
     private let baseURL = "https://d2c9087llvttmg.cloudfront.net"
     
     private func buildURL(for path: String, queryItems: [URLQueryItem] = []) -> URL? {
@@ -20,7 +20,7 @@ class RecommendationService {
         return components?.url
     }
     
-    func fetchRecommendations(completion: @escaping (Result<[Recommendation], Error>) -> Void) {
+    func fetchRecommendations(completion: @escaping (Result<RecommendationResponse, Error>) -> Void) {
         guard let url = buildURL(for: "/trending_and_sophi/recommendations.json") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
@@ -38,7 +38,7 @@ class RecommendationService {
             }
             
             do {
-                let recommendations = try JSONDecoder().decode([Recommendation].self, from: data)
+                let recommendations = try JSONDecoder().decode(RecommendationResponse.self, from: data)
                 completion(.success(recommendations))
             } catch let decodingError {
                 completion(.failure(decodingError))
